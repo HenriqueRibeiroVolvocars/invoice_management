@@ -1,5 +1,6 @@
 import streamlit as st
 import os
+from PIL import Image
 from dotenv import load_dotenv
 from app.data import load_suppliers, load_pos, load_notes
 from app.ui_sidebar import render_sidebar
@@ -12,7 +13,30 @@ from app.services import copy_invoice_message, copy_po
 
 load_dotenv()
 
-st.set_page_config(page_title="Gestão de POs e Notas Fiscais", layout="wide", initial_sidebar_state="collapsed")
+# 1. Carregar a imagem que você quer usar como favicon
+try:
+    img = Image.open("./assets/Iron Mark/Light Version AI EPS Volvo Iron Mark  white.png") # Substitua "seu_favicon.png" pelo nome do seu arquivo
+except FileNotFoundError:
+    st.error("Arquivo não encontrado.")
+    img = None # Define img como None se o arquivo não for encontrado
+
+# 2. Configurar a página com o favicon
+if img:
+    st.set_page_config(
+        page_title="Sistema de Gestão de Notas Fiscais por PO",
+        page_icon=img, # Usa o objeto de imagem
+        initial_sidebar_state="collapsed",
+        layout="wide"
+    )
+else:
+    # Se a imagem não for encontrada, usa um ícone padrão ou texto
+    st.set_page_config(
+        page_title="Sistema de Gestão de Notas Fiscais por PO",
+        page_icon="📄", # Exemplo de um ícone de texto
+        initial_sidebar_state="collapsed",
+        layout="wide"
+    )
+
 st.title("📄 Sistema de Gestão de Notas Fiscais por PO")
 
 # Load data
