@@ -1,0 +1,26 @@
+# Ambientes virtuais
+venv/
+.env/
+
+# Cache e compilados
+__pycache__/
+*.pyc
+*.pyo
+
+# Logs
+*.log
+
+# IDEs
+.vscode/
+.idea/
+
+# Build
+dist/
+build/
+# Tratamentos
+.travis.yml
+.travis
+# Files
+*.xlsx
+*.csv
+*.xls
